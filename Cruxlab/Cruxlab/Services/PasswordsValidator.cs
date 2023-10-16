@@ -45,7 +45,7 @@ public class PasswordsValidator : IPasswordsValidator
                         continue;
                     }
 
-                    if (record[1].Length >= 3 && record[1].EndsWith(':'))
+                    if (record[1].Length >= 4 && record[1].EndsWith(':'))
                     {
                         var str = record[1].TrimEnd(':');
                         var range = str.Split('-');
@@ -68,7 +68,7 @@ public class PasswordsValidator : IPasswordsValidator
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine("Failed to get interval.");
+                    Debug.WriteLine("Failed to process line.");
                     Debug.WriteLine(e);
                 }
             }
