@@ -1,4 +1,5 @@
-﻿using Cruxlab.Services;
+﻿using System.Diagnostics;
+using Cruxlab.Services;
 using Microsoft.Win32;
 using MvvmLib.Commands;
 using MvvmLib.Mvvm;
@@ -17,7 +18,6 @@ public class MainWindowViewModel : BindableBase
     private string _selectedFileFullPath;
     private AsyncCommand? _submitCommand;
     private int _validPasswords;
-    private bool _isSpinnerVisible;
 
     public MainWindowViewModel(IPasswordsValidator passwordsValidator)
     {
@@ -37,8 +37,7 @@ public class MainWindowViewModel : BindableBase
     }
 
     public bool IsSpinnerVisible => IsNotBusy == false;
-
-
+    
     public string SelectedFileName
     {
         get => _selectedFileName;
@@ -89,11 +88,18 @@ public class MainWindowViewModel : BindableBase
     private async Task ExecuteSubmitCommand()
     {
         IsNotBusy = false;
-#if DEBUG // Simulate working with big files
-        //await Task.Delay(500);
-#endif
-        ValidPasswords = await _passwordsValidator.ValidatePasswordAsync(_selectedFileFullPath);
-        IsNotBusy = true;
-    }
 
+        try
+        {
+            ValidPasswords = await _passwordsValidator.ValidatePasswordAsync(_selectedFileFullPath);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.WriteLine(ex);
+        }
+        finally
+        {
+            IsNotBusy = true;
+        }
+    }
 }
