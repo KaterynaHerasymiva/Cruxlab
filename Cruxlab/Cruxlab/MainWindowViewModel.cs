@@ -32,11 +32,14 @@ public class MainWindowViewModel : BindableBase
             if (SetProperty(ref _isNotBusy, value))
             {
                 OnPropertyChanged(nameof(IsSpinnerVisible));
+                OnPropertyChanged(nameof(IsCalculationFinished));
             }
         }
     }
 
     public bool IsSpinnerVisible => IsNotBusy == false;
+
+    public bool IsCalculationFinished => !IsSpinnerVisible;
 
 
     public string SelectedFileName
@@ -90,7 +93,7 @@ public class MainWindowViewModel : BindableBase
     {
         IsNotBusy = false;
 #if DEBUG // Simulate working with big files
-        //await Task.Delay(500);
+        await Task.Delay(3000);
 #endif
         ValidPasswords = await _passwordsValidator.ValidatePasswordAsync(_selectedFileFullPath);
         IsNotBusy = true;
