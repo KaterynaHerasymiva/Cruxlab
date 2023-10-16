@@ -32,12 +32,15 @@ public class MainWindowViewModel : BindableBase
             if (SetProperty(ref _isNotBusy, value))
             {
                 OnPropertyChanged(nameof(IsSpinnerVisible));
+                OnPropertyChanged(nameof(IsCalculationFinished));
             }
         }
     }
 
     public bool IsSpinnerVisible => IsNotBusy == false;
-    
+
+    public bool IsCalculationFinished => !IsSpinnerVisible;
+
     public string SelectedFileName
     {
         get => _selectedFileName;

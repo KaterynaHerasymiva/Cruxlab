@@ -30,8 +30,8 @@
                         <TextBlock  HorizontalAlignment="Left" Margin="2" Text="{Binding SelectedFileName}"/>
                     </Border>
                 </StackPanel>
-                <Button Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2" Width="90" Command="{Binding SelectFileCommand}">Select File..</Button>
-                <Button Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" Margin="2 10" Width="90" Command="{Binding SubmitCommand}">Submit</Button>
+                <Button Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2" Width="90" IsEnabled="{Binding IsCalculationFinished}" Command="{Binding SelectFileCommand}">Select File..</Button>
+                <Button Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" Margin="2 10" Width="90" IsEnabled="{Binding IsCalculationFinished}" Command="{Binding SubmitCommand}">Submit</Button>
 
                 <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="2" Visibility="{Binding IsNotBusy, Converter={StaticResource VisibleIfTrueConverter }}">
                     <Run>Number of valid passwords:</Run>
