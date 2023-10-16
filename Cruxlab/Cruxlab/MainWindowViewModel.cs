@@ -18,6 +18,7 @@ public class MainWindowViewModel : BindableBase
     private string _selectedFileFullPath;
     private AsyncCommand? _submitCommand;
     private int _validPasswords;
+    private bool _canSubmit;
 
     public MainWindowViewModel(IPasswordsValidator passwordsValidator)
     {
@@ -73,7 +74,6 @@ public class MainWindowViewModel : BindableBase
         }
     }
 
-    private bool _canSubmit;
     public bool CanSubmit
     {
         get => _canSubmit;
