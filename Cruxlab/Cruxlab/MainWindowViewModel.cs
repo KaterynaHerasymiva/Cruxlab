@@ -1,14 +1,17 @@
-﻿using System.Diagnostics;
-using Cruxlab.Services;
+﻿using Cruxlab.Services;
 using Microsoft.Win32;
+
 using MvvmLib.Commands;
 using MvvmLib.Mvvm;
+
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Cruxlab;
 
+// BindableBase typical implementation of INotifyPropertyChanged
 public class MainWindowViewModel : BindableBase
 {
     private readonly IPasswordsValidator _passwordsValidator;
@@ -45,7 +48,11 @@ public class MainWindowViewModel : BindableBase
     public string SelectedFileName
     {
         get => _selectedFileName;
-        set => SetProperty(ref _selectedFileName, value);
+        set
+        {
+            _selectedFileName = value;
+            OnPropertyChanged(nameof(SelectedFileName));
+        }
     }
 
     public int ValidPasswords

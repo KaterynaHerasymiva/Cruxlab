@@ -11,7 +11,12 @@ namespace Cruxlab
         public MainWindow()
         {
             InitializeComponent();
+            // Every Control in WPF has DataContext property for assigning a viewmodel to it
             DataContext = new MainWindowViewModel(new PasswordsValidator());
+
+            //A obj = new B();
+            //obj.Do1();
+
         }
     }
 }

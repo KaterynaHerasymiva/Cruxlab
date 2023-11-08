@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace Cruxlab.Services;
 
@@ -19,6 +15,7 @@ public class PasswordsValidator : IPasswordsValidator
 
         try
         {
+            await Task.Delay(3000);
             var text = await File.ReadAllTextAsync(pathToFile);
             string[] lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
